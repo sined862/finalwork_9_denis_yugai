@@ -19,16 +19,16 @@
         </p>
         {% if user.is_authenticated %}
         {% if is_author %}
-        <p><a href="{% url 'photo_update' photo.pk %}">редактировать</a>
+        <p><a class="btn btn-primary" href="{% url 'photo_update' photo.pk %}">редактировать</a>
          
         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Удалить фото
         </button>
         <p>
         {% if like_or_not %}
-        <a href="{% url 'favorite' photo.pk %}">Убрать из избранного</a>
+        <a class="btn btn-primary" href="{% url 'favorite' photo.pk %}">Убрать из избранного</a>
         {% else %}
-        <a href="{% url 'favorite' photo.pk %}">Добавить в избранное</a>
+        <a class="btn btn-primary" href="{% url 'favorite' photo.pk %}">Добавить в избранное</a>
         {% endif %}
         {% endif %}
         {% endif %}
