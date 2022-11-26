@@ -1,0 +1,62 @@
+{% extends 'gallery/base.html' %}
+
+{% load static%}
+
+{% block title %}
+    Детальная страница фото
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="mt-5">
+        <p class="text-center">
+            <p class="text-center"><img class="w-50" src="{{ photo.img.url }}" alt="photo"></p>
+        </p> 
+    </div>
+    <div>
+        <p>
+            {{ photo.text }}
+        </p>
+        {% if user.is_authenticated %}
+        {% if is_author %}
+        <p><a href="{% url 'photo_update' photo.pk %}">редактировать</a>
+         
+        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Удалить фото
+        </button>
+        <p>
+        {% if like_or_not %}
+        <a href="{% url 'favorite' photo.pk %}">Убрать из избранного</a>
+        {% else %}
+        <a href="{% url 'favorite' photo.pk %}">Добавить в избранное</a>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        </p>
+    </div>
+</div>
+
+<!-- Modal 1-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Подтверждение удаления профиля</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            Вы точно хотите удалить фото?
+            </div>
+            <div class="modal-footer">
+                <form action="{% url 'photo_del' object.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Да, хочу</button>
+                    <a href="" type="button" class="btn btn-primary">Отмена</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
