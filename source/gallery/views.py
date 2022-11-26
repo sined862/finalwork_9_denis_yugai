@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, View, TemplateView
 from django.urls import reverse, reverse_lazy 
 from django.shortcuts import redirect, get_object_or_404
-from gallery.models import Photo, Favorites
+from gallery.models import Photo
 from gallery.forms import PhotoForm
 from django.contrib.auth.models import User
 

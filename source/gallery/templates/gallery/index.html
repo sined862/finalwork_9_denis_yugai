@@ -19,7 +19,7 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-5">
         {% for photo in photos %}
         <div class="my-2">
-            <p class="mt-5 text-left"><strong>{{ photo.author }}</strong></p>
+            <p class="mt-5 text-left"><strong>{{ photo.author }}</strong> {{ photo.created_at }}</p>
             <a href="{% url 'photo' photo.pk %}">
                 <img class="post_img" src="{{ photo.img.url }}" alt="image">
             </a>
